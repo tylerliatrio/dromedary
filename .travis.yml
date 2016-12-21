@@ -2,21 +2,28 @@ language: node_js
 os: linux
 require: sudo
 node_js:
-  - "node"
+- node
 env:
-  - CXX=g++-4.8
+- CXX=g++-4.8
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
+    - g++-4.8
   hosts:
-    - dynamodb-local
+  - dynamodb-local
 before_script:
-    - wget http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz -O /tmp/dynamodb_local_latest.tar.gz
-    - tar -xzf /tmp/dynamodb_local_latest.tar.gz -C /tmp
-    - java -Djava.library.path=/tmp/DynamoDBLocal_lib -jar /tmp/DynamoDBLocal.jar -inMemory &
-    - npm install -g gulp
+- wget http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz
+  -O /tmp/dynamodb_local_latest.tar.gz
+- tar -xzf /tmp/dynamodb_local_latest.tar.gz -C /tmp
+- java -Djava.library.path=/tmp/DynamoDBLocal_lib -jar /tmp/DynamoDBLocal.jar -inMemory
+  &
+- npm install -g gulp
 script:
-    - gulp package-app
+- gulp package-app
+deploy:
+  provider: heroku
+  api_key:
+    secure: V4wiAUnwQ3ob9ONhTDjO462Q9gViDtMoqt4o54SD3YYNI6hUaNkkFj20eVp434gww6d4hFd5pqU+uM+tCYvgPgU7i6r5K4nEt8fpHohUrkHyzAi51r6T6DKTLd9i0BPhe4VAYPYAP1mnsh8jzUhx1bDwBNhDyyw50S+voSQN0YFcWUC0quENkOKaQbroEPfYacf2hlZEVz07uQy6P3Wv1nQ3tc9FnbOhYdRVJNZzRZUBiV3XQzgW4Su/UOoURltZCWVCk7tzRLEnImQIsT/dxctFMJY8mWeCScXH4pyx1Cf/zj5mco0vaFaxVh0xjy5AiRr9YS3fAoESSEiwhlGolDRk88Xnj67Dx3Ao7OQwzM6VagUrZRjc//b6BQBvibO2u1MVXuNO1KNZnJkxpfV+M5f4AAwpHBxng4SZrVpDKc8INsk5sxwj96nQxgXg6s0fgUki/LrJ+yzr8x6/GwAVGIDEGCFi71x9twp3nWOM0tEONCmRb56Qaij7KsCetJrZjERdYJVd7PlDtAIPos/LfAZi0S9ORcVAAAQJrvNlyKERPHtmvKbTKesGpxGAsYakrhUSdS5NJqTQ3OzhSC/sNGpEhVhOhugLUVEi+JWN1feUIzdq7K0GpBmIfwlXVBH4cvdSdcPld7cjTNlwj5NPOXBgcFaPLyO/YZpkzilirUI=
+  app: hidden-waters-57052
