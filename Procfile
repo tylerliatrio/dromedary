@@ -1,2 +1,1 @@
-web: npm install
-web: gulp
+web: node node_modules/gulp/bin/gulp build

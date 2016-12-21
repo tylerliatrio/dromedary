@@ -44,6 +44,7 @@
     "express": "^4.13.3",
     "git-rev": "^0.2.1",
     "lambda-express": "^0.1.2",
-    "moment": "^2.10.6"
+    "moment": "^2.10.6",
+    "gulp": "~3.9.1"
   }
 }
