@@ -1,6 +1,7 @@
 language: node_js
 node_js: 
   - "node"
+sudo: required
 before_script:
   - npm install -g gulp
   - wget http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz -O /tmp/dynamodb_local_latest.tar.gz
